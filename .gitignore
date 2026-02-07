@@ -1,0 +1,67 @@
+# --------------------
+# Python
+# --------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# --------------------
+# Virtual Environment
+# --------------------
+.venv/
+venv/
+env/
+
+# --------------------
+# Environment variables
+# --------------------
+.env
+.env.*
+!.env.example
+
+# --------------------
+# FastAPI / Uvicorn
+# --------------------
+*.log
+logs/
+uvicorn.log
+
+# --------------------
+# IDE / Editor
+# --------------------
+.vscode/
+.idea/
+*.iml
+
+# --------------------
+# OS files
+# --------------------
+.DS_Store
+Thumbs.db
+
+# --------------------
+# Test / Coverage
+# --------------------
+.coverage
+htmlcov/
+.pytest_cache/
+
+# --------------------
+# Build / Distribution
+# --------------------
+build/
+dist/
+*.egg-info/
+
+# --------------------
+# Migrations (Optional)
+# Uncomment if you DON'T want migrations tracked
+# --------------------
+# alembic/versions/
+
+# --------------------
+# Cache / Temp
+# --------------------
+.cache/
