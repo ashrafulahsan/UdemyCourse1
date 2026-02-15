@@ -22,6 +22,11 @@ class UserDisplay(BaseModel):
     class Config():
         from_attributes = True
 
+#User inside ArticleDisplay
+class User(BaseModel):
+    username: str
+    class Config():
+        from_attributes = True
 
 class ArticleBase(BaseModel):
     title: str
@@ -29,17 +34,10 @@ class ArticleBase(BaseModel):
     published: bool
     author_id: int
 
-#User inside ArticleDisplay
-class User(BaseModel):
-    id: int
-    username: str
-    class Config():
-        from_attributes = True
-
 class ArticleDisplay(BaseModel):
     title: str
     content: str
     published: bool
-    user: User
+    users: List[User] = []
     class Config():
         from_attributes = True
