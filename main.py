@@ -3,6 +3,7 @@ from db.database import engine
 from router import user
 from router import article
 from router import blog
+from router import product
 from db import models
 from exceptions import StoryException
 from fastapi import Request
@@ -13,6 +14,7 @@ app = FastAPI()
 app.include_router(user.router)
 app.include_router(article.router)
 app.include_router(blog.router)
+app.include_router(product.router)
 
 @app.exception_handler(StoryException)
 def story_exception_handler(request: Request, exc: StoryException):
