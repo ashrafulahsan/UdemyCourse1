@@ -1,16 +1,14 @@
 from fastapi import APIRouter
+from fastapi.responses import Response
 
 router = APIRouter(
     prefix="/products", 
     tags=["products"]
 )
 
-products = [
-    {"id": 1, "name": "Product 1", "price": 10.0},
-    {"id": 2, "name": "Product 2", "price": 20.0},
-    {"id": 3, "name": "Product 3", "price": 30.0},
-]
+products = ["Product 1","Product 2","Product 3"]
 
 @router.get("/all")
 def get_all_products():
-    return products
+    data = " ".join(products)
+    return Response(content=data, media_type="text/plain")
