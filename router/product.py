@@ -18,7 +18,24 @@ products = [
 #     return Response(content=data, media_type="text/plain")
 
 
-@router.get("/{id}")
+@router.get("/{id}", responses={
+    200: {
+        "content": {
+            "text/html": {
+                "example": "<div>Product 1</div>"
+            }
+        },
+        "description": "Return the product details in HTML format"
+    },
+    404: {
+        "content": {
+            "text/plain": {
+                "example": "Product not found"
+            },
+        "description": "Return a plain text message indicating the product was not found"
+        }
+    }
+})
 def get_product_by_id(id: int):
 
     if id > len(products):
