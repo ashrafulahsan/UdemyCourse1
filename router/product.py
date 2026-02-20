@@ -31,9 +31,9 @@ products = [
         "content": {
             "text/plain": {
                 "example": "Product not found"
-            },
+            }
+        },
         "description": "Return a plain text message indicating the product was not found"
-        }
     }
 })
 def get_product_by_id(id: int):
