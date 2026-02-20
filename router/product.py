@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Header
 from fastapi.responses import Response, HTMLResponse, PlainTextResponse
-from typing import Optional
+from typing import Optional, List
 
 router = APIRouter(
     prefix="/products", 
@@ -22,7 +22,7 @@ products = [
 @router.get("/withheaders")
 def get_products_with_headers(
         response: Response,
-        custon_header: Optional[str] = Header(None)
+        custon_header: Optional[List[str]] = Header(None)
     ):
     return {"message": "Products with headers"}
 
