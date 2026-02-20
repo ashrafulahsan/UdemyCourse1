@@ -22,8 +22,9 @@ products = [
 @router.get("/withheaders")
 def get_products_with_headers(
         response: Response,
-        custon_header: Optional[List[str]] = Header(None)
+        custom_header: Optional[List[str]] = Header(None)
     ):
+    response.headers["custom_response_header"] = " and ".join(custom_header)
     return {"message": "Products with headers"}
 
 @router.get("/{id}", responses={
