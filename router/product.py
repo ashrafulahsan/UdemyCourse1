@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Cookie, Header
+from fastapi import APIRouter, Cookie, Form, Header
 from fastapi.responses import Response, HTMLResponse, PlainTextResponse
 from typing import Optional, List
 
@@ -12,6 +12,15 @@ products = [
     {"name": "Smartphone", "price": 499.99},
     {"name": "Headphones", "price": 199.99}
 ]
+
+@router.post("/new")
+def create_product(
+    name: str = Form(...),
+    price: float = Form(...)
+):
+    products.append({"name": name, "price": price})
+    return products
+
 
 @router.get("/all")
 def get_all_products():
