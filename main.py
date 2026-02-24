@@ -8,6 +8,7 @@ from db import models
 from exceptions import StoryException
 from fastapi import Request
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
@@ -28,3 +29,16 @@ models.Base.metadata.create_all(bind=engine)
 @app.get("/")
 def greet():
     return {"message": "Hello World"}
+
+
+origins = [
+    "http://localhost:3000"
+] 
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_methods=["*"], # get, post , put, delete
+    allow_headers=["*"], # content-type, authorization
+    allow_credentials=True,
+)
