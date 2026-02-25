@@ -1,9 +1,7 @@
 from fastapi import FastAPI
 from db.database import engine
-from router import user
-from router import article
-from router import blog
-from router import product
+from router import user, article, blog, product
+from auth import authentication
 from db import models
 from exceptions import StoryException
 from fastapi import Request
@@ -12,6 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
+app.include_router(authentication.router)
 app.include_router(user.router)
 app.include_router(article.router)
 app.include_router(blog.router)
