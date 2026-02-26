@@ -7,3 +7,5 @@ pydantic
 python-multipart
 python-jose==3.3.0
 aiofiles
+requests
+pytest
