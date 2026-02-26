@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from db.database import engine
-from router import user, article, blog, product
+from router import user, article, blog, product, file
 from auth import authentication
 from db import models
 from exceptions import StoryException
@@ -15,6 +15,7 @@ app.include_router(user.router)
 app.include_router(article.router)
 app.include_router(blog.router)
 app.include_router(product.router)
+app.include_router(file.router)
 
 @app.exception_handler(StoryException)
 def story_exception_handler(request: Request, exc: StoryException):
