@@ -4,6 +4,15 @@ from sqlalchemy.orm.session import Session
 from schemas import UserBase
 from db.models import DbUser
 
+__all__ = [
+    "create_user",
+    "get_all_users",
+    "get_user_by_id",
+    "get_user_by_username",
+    "update_user",
+    "delete_user"
+]
+
 def create_user(db: Session, request: UserBase):
     db_user = DbUser(
         username=request.username,
@@ -24,6 +33,28 @@ def get_user_by_id(db: Session, id: int):
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, 
             detail=f"User with id {id} not found"
+        )
+    return user
+
+def get_user_by_username(db: Session, username: str):
+    """Retrieve a single user by their username.
+
+    Raises an HTTPException with 404 if the user does not exist.
+    """
+    user = db.query(DbUser).filter(DbUser.username == username).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, 
+            detail=f"User with username {username} not found"
+        )
+    return user
+
+def get_user_by_username(db: Session, username: str):
+    user = db.query(DbUser).filter(DbUser.username == username).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, 
+            detail=f"User with username {username} not found"
         )
     return user
 
