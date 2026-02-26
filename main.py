@@ -7,6 +7,7 @@ from exceptions import StoryException
 from fastapi import Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 
 app = FastAPI()
@@ -42,3 +43,5 @@ app.add_middleware(
     allow_headers=["*"], # content-type, authorization
     allow_credentials=True,
 )
+
+app.mount("/files", StaticFiles(directory="files"), name="files")
