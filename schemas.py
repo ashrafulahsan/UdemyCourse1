@@ -41,3 +41,8 @@ class ArticleDisplay(BaseModel):
     users: List[User] = []
     class Config():
         from_attributes = True
+
+class ProductBase(BaseModel):
+    name: str
+    description: str
+    price: float

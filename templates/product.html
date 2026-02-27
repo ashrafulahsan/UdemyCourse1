@@ -1,11 +1,13 @@
 <html>
   <head>
     <title>Product Details</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', path='/style.css')}}  ">
   </head>
   <body>
     <h1>Product Details</h1>
     <p>ID: {{ product.id }}</p>
     <p>Name: {{ product.name }}</p>
+    <p>Description: {{ product.description }}</p>
     <p>Price: ${{ product.price }}</p>
   </body>
 </html>
