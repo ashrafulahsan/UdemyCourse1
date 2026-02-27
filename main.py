@@ -8,9 +8,11 @@ from fastapi import Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from templates import templates
 
 
 app = FastAPI()
+app.include_router(templates.router)
 app.include_router(authentication.router)
 app.include_router(user.router)
 app.include_router(article.router)
