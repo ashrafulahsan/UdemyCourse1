@@ -10,3 +10,5 @@ aiofiles
 requests
 pytest
 jinja2
+websockets
+python-jose
