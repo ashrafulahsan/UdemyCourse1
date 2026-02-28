@@ -1,7 +1,7 @@
 import time
 from fastapi import FastAPI, WebSocket
 from db.database import engine
-from router import user, article, blog, product, file
+from router import user, article, blog, product, file, dependencies
 from auth import authentication
 from db import models
 from exceptions import StoryException
@@ -14,6 +14,7 @@ from client import html
 
 
 app = FastAPI()
+app.include_router(dependencies.router)
 app.include_router(templates.router)
 app.include_router(authentication.router)
 app.include_router(user.router)
