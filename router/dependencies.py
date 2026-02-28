@@ -6,14 +6,23 @@ router = APIRouter(
     tags=["Dependencies"]
 )
 
-def convert_headers(request: Request, separetor: str = " --:-- "):
+def convert_query_params(request: Request, separetor: str = " --:-- "):
+    out_query_params = []
+    for key, value in request.query_params.items():
+        out_query_params.append(f"{key} {separetor} {value}")
+    return out_query_params
+
+def convert_headers(request: Request, separetor: str = " --:-- ", query = Depends(convert_query_params)):
     out_headers = []
     for key, value in request.headers.items():
         out_headers.append(f"{key} {separetor} {value}")
-    return out_headers
+    return {
+        "headers": out_headers,
+        "query_params": query
+    }
 
 @router.get("/headers")
-def get_headers(headers: list[str] = Depends(convert_headers)):
+def get_headers(test: str, separetor: str = '$$$', headers: list[str] = Depends(convert_headers)):
     return {
         'item': ['a', 'b', 'c'],
         'headers': headers
