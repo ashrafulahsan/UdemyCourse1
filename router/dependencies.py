@@ -1,9 +1,11 @@
 from fastapi import APIRouter, Depends, Request
 from websockets import headers
+from custom_log import log
 
 router = APIRouter(
     prefix="/dependencies",
-    tags=["Dependencies"]
+    tags=["Dependencies"],
+    dependencies=[Depends(log)]
 )
 
 def convert_query_params(request: Request, separetor: str = " --:-- "):
