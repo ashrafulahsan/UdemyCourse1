@@ -25,3 +25,17 @@ def get_products_with_headers(headers = Depends(convert_headers)):
         'item': ['product1', 'product2', 'product3'],
         'headers': headers
     }
+
+class Account:
+    def __init__(self, name: str, email: str):
+        self.name = name
+        self.email = email
+
+@router.get("/user")
+def get_user(name: str, email: str, account: Account = Depends(Account)):
+    return {
+        'account': {
+            'name': account.name,
+            'email': account.email
+        }
+    }
