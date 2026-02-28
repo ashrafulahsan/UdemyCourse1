@@ -1,14 +1,15 @@
 from fastapi import APIRouter, Depends, Request
+from websockets import headers
 
 router = APIRouter(
     prefix="/dependencies",
     tags=["Dependencies"]
 )
 
-def convert_headers(request: Request):
+def convert_headers(request: Request, separetor: str = " --:-- "):
     out_headers = []
     for key, value in request.headers.items():
-        out_headers.append(f"{key} --:-- {value}")
+        out_headers.append(f"{key} {separetor} {value}")
     return out_headers
 
 @router.get("/headers")
